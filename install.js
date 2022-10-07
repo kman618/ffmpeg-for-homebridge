@@ -34,7 +34,7 @@ function ensureFfmpegCacheDir() {
 async function getDownloadFileName() {
   switch (os.platform()) {
     case 'darwin':
-      if (parseInt(os.release()) >= 18) {
+      if (parseInt(os.release()) >= 17) {
         switch (process.arch) {
           case 'x64':
             return 'ffmpeg-darwin-x86_64.tar.gz';
@@ -171,7 +171,7 @@ async function install() {
   const ffmpegDownloadFileName = await getDownloadFileName();
 
   if (!ffmpegDownloadFileName) {
-    if (os.platform() === 'darwin' && parseInt(os.release()) < 18) {
+    if (os.platform() === 'darwin' && parseInt(os.release()) < 17) {
       console.log(`ffmpeg-for-homebridge: macOS versions older than 10.14 "Mojave" are not supported, you will need to install/compile ffmpeg manually.`);
     } else {
       console.log(`ffmpeg-for-homebridge: ${os.platform()} ${process.arch} is not supported, you will need to install/compile ffmpeg manually.`);
